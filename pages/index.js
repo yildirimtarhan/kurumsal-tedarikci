@@ -143,4 +143,4 @@ export default function Home() {
     </>
   );
 }
-npm install framer-motion
+
