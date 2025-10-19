@@ -1,62 +1,45 @@
-// pages/entegrasyon.js
 export default function Entegrasyon() {
   const entegrasyonlar = [
     {
-      title: "Hepsiburada Entegrasyonu",
-      image: "/images/hepsiburada-entegrasyon.webp",
-      description:
-        "Hepsiburada API entegrasyonu ile siparişleri, ürünleri ve stok bilgilerini tek panelden yönetin. Otomatik güncellemelerle satış süreçlerinizi hızlandırın.",
-    },
-    {
       title: "Trendyol Entegrasyonu",
-      image: "/images/Trendyol-Entegrasyonu_2.png",
-      description:
-        "Trendyol mağazanızı panelinize entegre ederek siparişleri tek noktadan kontrol edin, otomatik fatura ve kargo işlemleriyle operasyonel yükü azaltın.",
+      img: "/images/Trendyol-Entegrasyonu_2.png",
+      desc: "Trendyol mağazanızla sipariş, stok ve ürün senkronizasyonunu kolayca yönetin.",
     },
     {
-      title: "Diğer Pazaryerleri",
-      image: "/images/donusum.jpg",
-      description:
-        "İsteğe bağlı entegrasyonlarla N11, Çiçeksepeti gibi diğer pazaryerlerini de sisteminize dahil ederek çok kanallı satış stratejisi oluşturun.",
+      title: "Hepsiburada Entegrasyonu",
+      img: "/images/hepsiburada-entegrasyon.webp",
+      desc: "Hepsiburada satış kanalını sisteminize entegre ederek siparişlerinizi tek panelden yönetin.",
+    },
+    {
+      title: "Sunucu & Veri Yönetimi",
+      img: "/images/bilgi-islem-daire-baskanligi-siirt-202426194741142.jpg",
+      desc: "Kurumsal verilerinizi güvenli sunucularda tutun, veri kayıplarının önüne geçin.",
     },
   ];
 
   return (
-    <main>
-      {/* Hero */}
-      <section className="bg-gradient-to-r from-orange-500 to-orange-600 text-white py-20 text-center">
-        <div className="max-w-3xl mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-4">Pazaryeri Entegrasyonları</h1>
-          <p className="text-lg opacity-90">
-            Tüm satış kanallarınızı tek panelden yönetin. Otomatik sipariş yönetimi, faturalama ve kargo süreçleriyle işinizi kolaylaştırın.
-          </p>
-        </div>
-      </section>
-
-      {/* Entegrasyon Kartları */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Entegrasyon Çözümlerimiz</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {entegrasyonlar.map((item, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden flex flex-col"
-              >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-4 flex flex-col flex-grow">
-                  <h3 className="font-semibold text-xl mb-2">{item.title}</h3>
-                  <p className="text-slate-600 text-sm flex-grow">{item.description}</p>
-                </div>
-              </div>
-            ))}
+    <main className="min-h-screen bg-gray-50 py-16 px-6">
+      <h1 className="text-4xl font-bold text-center mb-12 text-orange-600">
+        Entegrasyon Çözümlerimiz
+      </h1>
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        {entegrasyonlar.map((item, i) => (
+          <div
+            key={i}
+            className="bg-white rounded-xl shadow hover:shadow-lg transition p-6 text-center"
+          >
+            <img
+              src={item.img}
+              alt={item.title}
+              className="w-64 h-40 object-contain mx-auto mb-4"
+            />
+            <h2 className="text-xl font-semibold mb-2 text-gray-800">
+              {item.title}
+            </h2>
+            <p className="text-gray-600">{item.desc}</p>
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
     </main>
   );
 }

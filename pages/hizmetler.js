@@ -1,80 +1,60 @@
-// pages/hizmetler.js
 export default function Hizmetler() {
-  const services = [
-    {
-      title: "E-Fatura",
-      image: "/images/e-fatura.png",
-      description:
-        "E-Fatura ile kağıt fatura işlemlerini dijital ortama taşıyarak hız, güvenlik ve yasal uyum sağlayın.",
-    },
+  const hizmetler = [
     {
       title: "E-İmza",
-      image: "/images/e-imza.jpg",
-      description:
-        "Resmi belgelerinizi güvenli ve hızlı şekilde imzalamanızı sağlayan dijital imza teknolojisidir.",
-    },
-    {
-      title: "KEP Adresi",
-      image: "/images/kep.jpg",
-      description:
-        "Kayıtlı Elektronik Posta (KEP) ile gönderdiğiniz her e-posta yasal delil niteliğindedir.",
+      img: "/images/e_imza_nedir_h32121_efb4e.jpg",
+      desc: "Elektronik imza, ıslak imza ile aynı hukuki geçerliliğe sahiptir ve dijital ortamda belgeleri güvenle imzalamanızı sağlar.",
     },
     {
       title: "Mali Mühür",
-      image: "/images/mali-muhur.jpeg",
-      description:
-        "E-fatura sistemine kayıt için zorunlu olan Mali Mühür, şirketinizin dijital kimliğidir.",
+      img: "/images/mali-muhur.jpeg",
+      desc: "Mali mühür, e-fatura ve e-defter işlemlerinde şirket kimliğinizi doğrulamak için kullanılır.",
+    },
+    {
+      title: "E-Fatura",
+      img: "/images/logo-e-fatura.png",
+      desc: "E-Fatura sistemi ile faturalarınızı dijital ortamda hızlı, güvenli ve çevre dostu şekilde oluşturun.",
+    },
+    {
+      title: "KEP Adresi",
+      img: "/images/kep-adresi.jpg",
+      desc: "KEP (Kayıtlı Elektronik Posta) ile gönderdiğiniz e-postalar yasal delil niteliği taşır.",
     },
     {
       title: "Dijital Dönüşüm",
-      image: "/images/donusum.jpg",
-      description:
-        "Şirketinizin süreçlerini dijitalleştirerek rekabet gücünüzü artırın, geleceğe hazır olun.",
+      img: "/images/donusum.jpeg",
+      desc: "Şirketinizin süreçlerini dijitalleştirerek verimliliği artırın ve modern çözümlerle geleceğe hazırlanın.",
     },
     {
-      title: "Bilgi İşlem Danışmanlığı",
-      image: "/images/bilgi-islem.jpg",
-      description:
-        "Ağ, sistem, güvenlik ve yazılım alanlarında profesyonel danışmanlıkla iş sürekliliğinizi sağlayın.",
+      title: "IT Danışmanlığı",
+      img: "/images/it-danismanligi.jpg",
+      desc: "Ağ yönetimi, sunucu optimizasyonu ve kurumsal yazılım danışmanlığı hizmetleriyle bilgi işlem süreçlerinizi güçlendirin.",
     },
   ];
 
   return (
-    <main>
-      {/* Hero */}
-      <section className="bg-gradient-to-r from-orange-500 to-orange-600 text-white py-20 text-center">
-        <div className="max-w-3xl mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-4">Hizmetlerimiz</h1>
-          <p className="text-lg opacity-90">
-            Dijital dönüşüm, elektronik belge yönetimi ve IT danışmanlığı alanlarında uçtan uca çözümler sunuyoruz.
-          </p>
-        </div>
-      </section>
-
-      {/* Hizmetler Grid */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Kurumsal Çözümlerimiz</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {services.map((service, i) => (
-              <div
-                key={i}
-                className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden flex flex-col"
-              >
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-4 flex flex-col flex-grow">
-                  <h3 className="font-semibold text-xl mb-2">{service.title}</h3>
-                  <p className="text-slate-600 text-sm flex-grow">{service.description}</p>
-                </div>
-              </div>
-            ))}
+    <main className="min-h-screen bg-gray-50 py-16 px-6">
+      <h1 className="text-4xl font-bold text-center mb-12 text-orange-600">
+        Hizmetlerimiz
+      </h1>
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        {hizmetler.map((item, i) => (
+          <div
+            key={i}
+            className="bg-white rounded-xl shadow hover:shadow-lg transition p-6 text-center"
+          >
+            <img
+              src={item.img}
+              alt={item.title}
+              className="w-56 h-40 object-contain mx-auto mb-4"
+            />
+            <h2 className="text-xl font-semibold mb-2 text-gray-800">
+              {item.title}
+            </h2>
+            <p className="text-gray-600">{item.desc}</p>
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
     </main>
   );
 }

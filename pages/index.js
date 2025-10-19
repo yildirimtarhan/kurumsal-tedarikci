@@ -1,60 +1,55 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const services = [
-    {
-      title: "E-Fatura",
-      image: "/images/e-fatura.png",
-      description: "E-Fatura ile kağıt fatura işlemlerini dijital ortama taşıyarak hız, güvenlik ve yasal uyum sağlayın.",
-    },
-    {
-      title: "E-İmza",
-      image: "/images/e-imza.jpg",
-      description: "Resmi belgelerinizi güvenli ve hızlı şekilde imzalamanızı sağlayan dijital imza teknolojisidir.",
-    },
-    {
-      title: "KEP Adresi",
-      image: "/images/kep.jpg",
-      description: "Kayıtlı Elektronik Posta (KEP) ile gönderdiğiniz her e-posta yasal delil niteliğindedir.",
-    },
-    {
-      title: "Mali Mühür",
-      image: "/images/mali-muhur.jpeg",
-      description: "E-fatura sistemine kayıt için zorunlu olan Mali Mühür, şirketinizin dijital kimliğidir.",
-    },
-    {
-      title: "Dijital Dönüşüm",
-      image: "/images/donusum.jpg",
-      description: "Şirketinizin süreçlerini dijitalleştirerek rekabet gücünüzü artırın, geleceğe hazır olun.",
-    },
-    {
-      title: "Bilgi İşlem Danışmanlığı",
-      image: "/images/bilgi-islem.jpg",
-      description: "Ağ, sistem, güvenlik ve yazılım alanlarında profesyonel danışmanlıkla iş sürekliliğinizi sağlayın.",
-    },
-  ];
-
   return (
     <>
-      {/* 🧭 Header */}
-      <header className="sticky top-0 z-50 bg-white shadow">
-        <nav className="max-w-7xl mx-auto flex justify-between items-center h-16 px-4">
-          <div className="flex items-center gap-3">
-            <img src="/images/logo.png" alt="Logo" className="h-10 w-auto" />
-            <span className="font-semibold text-lg">Kurumsal Tedarikçi</span>
-          </div>
+      {/* 🧭 HEADER */}
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b shadow-sm">
+        <nav className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center gap-2"
+          >
+            <img
+              src="/images/logo.png"
+              alt="Kurumsal Tedarikçi Logo"
+              className="h-8 w-auto object-contain"
+            />
+            <span className="font-semibold text-lg text-gray-800 hidden sm:inline">
+              Kurumsal Tedarikçi
+            </span>
+          </motion.div>
 
-          <div className="hidden md:flex gap-8 text-sm font-medium">
-            <a href="#hizmetler" className="hover:text-orange-600 transition">Hizmetler</a>
+          {/* Menü */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="hidden md:flex items-center gap-8 text-sm font-medium"
+          >
+            <a href="/" className="hover:text-orange-600 transition">Ana Sayfa</a>
+            <a href="/hizmetler" className="hover:text-orange-600 transition">Hizmetler</a>
             <a href="/entegrasyon" className="hover:text-orange-600 transition">Entegrasyon</a>
             <a href="#iletisim" className="hover:text-orange-600 transition">İletişim</a>
-          </div>
+          </motion.div>
 
+          {/* Teklif Butonu */}
+          <a
+            href="#iletisim"
+            className="hidden md:block bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition"
+          >
+            Teklif Al
+          </a>
+
+          {/* Mobil Menü */}
           <button
-            onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden p-2 rounded-md hover:bg-gray-100"
+            onClick={() => setMenuOpen(!menuOpen)}
           >
             <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {menuOpen ? (
@@ -66,78 +61,60 @@ export default function Home() {
           </button>
         </nav>
 
-        {/* Mobil Menü */}
-        {menuOpen && (
-          <div className="md:hidden bg-white border-t flex flex-col items-start p-4 space-y-3">
-            <a href="#hizmetler" onClick={() => setMenuOpen(false)}>Hizmetler</a>
+        {/* Mobil Menü İçeriği */}
+        <div
+          className={`md:hidden bg-white border-t overflow-hidden transition-all duration-300 ${
+            menuOpen ? "max-h-60 opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="flex flex-col items-start p-4 space-y-3 text-sm">
+            <a href="/" onClick={() => setMenuOpen(false)}>Ana Sayfa</a>
+            <a href="/hizmetler" onClick={() => setMenuOpen(false)}>Hizmetler</a>
             <a href="/entegrasyon" onClick={() => setMenuOpen(false)}>Entegrasyon</a>
             <a href="#iletisim" onClick={() => setMenuOpen(false)}>İletişim</a>
+            <a
+              href="#iletisim"
+              className="w-full bg-orange-500 text-white text-center py-2 rounded-full hover:bg-orange-600 transition"
+            >
+              Teklif Al
+            </a>
           </div>
-        )}
+        </div>
       </header>
 
-      {/* 🟠 Hero */}
-      <section className="bg-gradient-to-r from-orange-500 to-orange-600 text-white py-24 text-center">
-        <div className="max-w-3xl mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-4">Dijital Dönüşümde Güvenilir Çözüm Ortağınız</h1>
-          <p className="text-lg opacity-90 mb-6">
-            E-İmza, Mali Mühür, KEP, IT Danışmanlığı ve Entegrasyon çözümleriyle işletmenizi geleceğe taşıyın.
+      {/* 🟠 HERO */}
+      <motion.section
+        className="bg-gradient-to-r from-orange-500 to-orange-600 text-white py-24 text-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <motion.div
+          className="max-w-3xl mx-auto px-4"
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.7 }}
+        >
+          <h1 className="text-4xl font-bold mb-4">
+            Dijital Dönüşümde Güvenilir Çözüm Ortağınız
+          </h1>
+          <p className="text-lg mb-6 opacity-90">
+            E-İmza, E-Fatura, KEP, IT Danışmanlığı ve Entegrasyon çözümleriyle işletmenizi geleceğe taşıyın.
           </p>
           <div className="flex justify-center gap-4">
-            <button className="bg-white text-orange-600 px-6 py-2 rounded-lg font-semibold hover:bg-orange-50 transition">
-              Hemen Başla
-            </button>
-            <button className="border border-white text-white px-6 py-2 rounded-lg hover:bg-orange-700 transition">
-              Daha Fazla Bilgi
-            </button>
+            <a href="/hizmetler" className="bg-white text-orange-600 px-6 py-2 rounded-lg font-semibold hover:bg-orange-50 transition">
+              Hizmetlerimizi İncele
+            </a>
+            <a href="/entegrasyon" className="border border-white px-6 py-2 rounded-lg hover:bg-orange-700 transition">
+              Entegrasyonlar
+            </a>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
-      {/* 🧰 Hizmetler */}
-      <section id="hizmetler" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Hizmetlerimiz</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {services.map((service, i) => (
-              <div
-                key={i}
-                className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden flex flex-col"
-              >
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-4 flex flex-col flex-grow">
-                  <h3 className="font-semibold text-xl mb-2">{service.title}</h3>
-                  <p className="text-slate-600 text-sm flex-grow">{service.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 📞 İletişim */}
-      <section id="iletisim" className="py-20 bg-white">
-        <div className="max-w-xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Bizimle İletişime Geçin</h2>
-          <p className="text-slate-600 mb-8">Hizmetlerimiz hakkında daha fazla bilgi almak için bize yazın.</p>
-          <a
-            href="https://wa.me/905059112749"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition"
-          >
-            WhatsApp'tan Yaz
-          </a>
-        </div>
-      </section>
-
-      {/* 🦶 Footer */}
-      <footer className="bg-slate-900 text-white text-center py-6">
-        © {new Date().getFullYear()} Kurumsal Tedarikçi. Tüm hakları saklıdır.
+      {/* 🦶 FOOTER */}
+      <footer className="bg-slate-900 text-white py-6 text-center mt-16">
+        © {new Date().getFullYear()} Kurumsal Tedarikçi — Tüm Hakları Saklıdır.
       </footer>
     </>
   );
